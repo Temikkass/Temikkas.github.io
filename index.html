@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Valentine? 💕</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(135deg, #ffeef8 0%, #ffe0f0 50%, #ffd6eb 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .container {
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        h1 {
+            font-family: 'Pacifico', cursive;
+            font-size: 3rem;
+            color: #d63384;
+            margin-bottom: 60px;
+            text-shadow: 2px 2px 4px rgba(214, 51, 132, 0.2);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .thank-you {
+            font-family: 'Pacifico', cursive;
+            font-size: 3rem;
+            color: #d63384;
+            margin-bottom: 40px;
+            text-shadow: 2px 2px 4px rgba(214, 51, 132, 0.2);
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            10%, 30% {
+                transform: scale(1.1);
+            }
+            20%, 40% {
+                transform: scale(1);
+            }
+        }
+
+        .buttons-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 60px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 600;
+            font-size: 1.5rem;
+            padding: 20px 40px;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            color: white;
+        }
+
+        #yesBtn {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+        }
+
+        #yesBtn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(40, 167, 69, 0.4);
+        }
+
+        #noBtn {
+            background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+        }
+
+        #noBtn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(220, 53, 69, 0.4);
+        }
+
+        .gif-container {
+            margin-top: 40px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .gif-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 30px;
+            animation: fall 8s linear infinite;
+            opacity: 0.6;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 600px) {
+            h1, .thank-you {
+                font-size: 2rem;
+            }
+            
+            button {
+                font-size: 1.2rem;
+                padding: 15px 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hearts" id="hearts"></div>
+    
+    <div class="container">
+        <div id="questionSection">
+            <h1>Will You Be My Valentine? 💕</h1>
+            
+            <div class="buttons-container">
+                <button id="yesBtn">Yes! 💖</button>
+                <button id="noBtn">No 😢</button>
+            </div>
+        </div>
+
+        <div id="thankYouSection" style="display: none;">
+            <h1 class="thank-you">Thank You My Valentine! 💖</h1>
+        </div>
+
+        <div class="gif-container" id="gifBefore">
+            <div class="tenor-gif-embed" data-postid="16326875" data-share-method="host" data-aspect-ratio="1" data-width="100%"><a href="https://tenor.com/view/cute-sweet-pokemon-pikachu-will-chu-be-my-valentine-gif-16326875">Cute Sweet GIF</a>from <a href="https://tenor.com/search/cute-gifs">Cute GIFs</a></div>
+        </div>
+
+        <div class="gif-container" id="gifAfter" style="display: none;">
+            <div class="tenor-gif-embed" data-postid="17335643218552398559" data-share-method="host" data-aspect-ratio="1.1267" data-width="100%"><a href="https://tenor.com/view/cute-blinking-blinking-eyes-eyes-blinking-cute-face-gif-17335643218552398559">Cute Blinking GIF</a>from <a href="https://tenor.com/search/cute-gifs">Cute GIFs</a></div>
+        </div>
+    </div>
+
+    <script>
+        const yesBtn = document.getElementById('yesBtn');
+        const noBtn = document.getElementById('noBtn');
+        const questionSection = document.getElementById('questionSection');
+        const thankYouSection = document.getElementById('thankYouSection');
+        
+        let noClickCount = 0;
+        let baseSize = 1.5; // базовый размер в rem
+
+        // Создание падающих сердечек
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.animationDuration = (Math.random() * 3 + 5) + 's';
+            heart.style.fontSize = (Math.random() * 20 + 20) + 'px';
+            document.getElementById('hearts').appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 8000);
+        }
+
+        // Создаём сердечки каждые 300мс
+        setInterval(createHeart, 300);
+
+        // Обработчик кнопки "No"
+        noBtn.addEventListener('click', function() {
+            noClickCount++;
+            const newSize = baseSize + (noClickCount * 0.5);
+            yesBtn.style.fontSize = newSize + 'rem';
+            yesBtn.style.padding = (20 + noClickCount * 5) + 'px ' + (40 + noClickCount * 10) + 'px';
+            
+            // Небольшая анимация при нажатии
+            noBtn.style.transform = 'scale(0.9)';
+            setTimeout(() => {
+                noBtn.style.transform = 'scale(1)';
+            }, 100);
+        });
+
+        // Обработчик кнопки "Yes"
+        yesBtn.addEventListener('click', function() {
+            questionSection.style.display = 'none';
+            thankYouSection.style.display = 'block';
+            
+            // Меняем гифку
+            document.getElementById('gifBefore').style.display = 'none';
+            document.getElementById('gifAfter').style.display = 'block';
+            
+            // Создаём много сердечек при нажатии
+            for(let i = 0; i < 50; i++) {
+                setTimeout(createHeart, i * 50);
+            }
+        });
+    </script>
+    <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+</body>
+</html>
